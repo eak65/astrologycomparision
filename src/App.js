@@ -43,7 +43,10 @@ class ComparisionForm extends React.Component {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        "as1": this.state.as1
+        "as1": this.state.as1,
+        "as2": this.state.as2,
+        "description": this.state.textarea
+
    })
   };
   console.log("test")
