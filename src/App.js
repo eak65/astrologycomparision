@@ -50,7 +50,7 @@ class ComparisionForm extends React.Component {
    })
   };
   console.log("test")
-  fetch('https://84dvvklokj.execute-api.us-east-1.amazonaws.com/Production/create', requestOptions)
+  fetch('https://84dvvklokj.execute-api.us-east-1.amazonaws.com/Production/compatibility', requestOptions)
       .then(response => response.json())
       .then(data => alert(data));
       event.preventDefault();
