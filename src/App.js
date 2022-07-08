@@ -17,6 +17,7 @@ class ComparisionForm extends React.Component {
                   name1: '',
                   name2: '',
                   textarea: '',
+                  generatedUrl:'',
                   disabled: true};
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,7 +53,7 @@ class ComparisionForm extends React.Component {
   console.log("test")
   fetch('https://84dvvklokj.execute-api.us-east-1.amazonaws.com/Production/compatibility', requestOptions)
       .then(response => response.json())
-      .then(data => alert(data));
+      .then(data => this.state.generatedUrl = data);
       event.preventDefault();
 
 
@@ -146,6 +147,7 @@ class ComparisionForm extends React.Component {
         <br/>
         <input value ="Submit" type="submit" disabled={this.state.disabled}/>
       </form>
+      <label> {this.state.generatedUrl}  </label>
       </div>
     );
   }
