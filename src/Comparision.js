@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {useParams, useLocation} from "react-router-dom";
-import './App.css';
+
+import leo from './leo.jpg';
+import libra from './libra.jpg';
 
 
   function Result() {
@@ -29,11 +31,17 @@ import './App.css';
     // Render as usual
     return (
         
-      <>
-      {posts.as1}
-      {posts.description}
-      {posts.as2}
-      </>
+      <div className="row">
+        <div className="col-4">
+        <img className="Circular" src={leo}  />
+        </div>
+        <div className="col-4">
+         {posts.description}
+        </div>
+        <div className="col-4">
+      { <img className="Circular" src={libra}  />}
+      </div>
+      </div>
     );
   }
 

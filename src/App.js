@@ -2,6 +2,10 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Link, Route, useHistory ,useLocation } from 'react-router-dom';
 import Result from './Comparision';
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+// Bootstrap Bundle JS
+import "bootstrap/dist/js/bootstrap.bundle.min";
 function App() {
   return (
     <Router>
@@ -14,12 +18,6 @@ function App() {
     </Router>
   );
 
-
-}
-function Location() {
-  return (
-    <label> {useLocation().pathname}</label> 
-  );
 
 }
 class ComparisionForm extends React.Component {
@@ -78,14 +76,19 @@ class ComparisionForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div class="container">
       <div>Welcome to Astrology Compatability creator!</div>
       <form onSubmit={this.handleSubmit}>
         <p>Your information:</p>
-        <ul>
-          <li>
+        <div class="row"> 
+            <div class="col">
             <label>
-            Astrological Sign:<select value={this.state.as1} name="as1" onChange={this.handleChange}>
+            Astrological Sign: 
+            </label>
+            </div>
+            <div class="col">
+
+            <select value={this.state.as1} name="as1" onChange={this.handleChange}>
               <option value="Aries">Aries</option>
               <option value="Taurus">Taurus</option>
               <option selected value="Gemini">Gemini</option>
@@ -99,30 +102,45 @@ class ComparisionForm extends React.Component {
               <option value="Aquarius">Aquarius</option>
               <option selected value="Pisces">Pisces</option>
             </select> 
-            </label>
-            
-          </li>
-          <li>
+            </div>
+          </div>
+          <div class="row"> 
+            <div class="col">
             <label>
-            Name:<input type="text"  value={this.state.name1} name="name1"  onChange={this.handleChange} />
-            </label>
-          </li>
-          <li>
+            Name: </label>
+            </div>
+            <div class="col">
+            <input type="text"  value={this.state.name1} name="name1"  onChange={this.handleChange} />
+            </div>
+            </div>
+            <div class="row"> 
+            <div class="col">
             <label>
-            Age:<input type="text"  value={this.state.age1} name="age1"  onChange={this.handleChange} />
-            </label>
-          </li>
-          <li>
+            Age:     </label>
+            </div>
+            <div class="col">
+              <input type="text"  value={this.state.age1} name="age1"  onChange={this.handleChange} />
+          </div>
+          </div>
+          <div class="row"> 
+            <div class="col">
             <label>
-            Hair Color:<input type="text"  value={this.state.hairColor1} name="hairColor1"  onChange={this.handleChange} />
-            </label>
-          </li>
-        </ul>
+            Hair Color:</label>
+            </div>           
+             <div class="col">
+            <input type="text"  value={this.state.hairColor1} name="hairColor1"  onChange={this.handleChange} />
+            </div>
+          </div>
         <p>Their information:</p>
-        <ul>
-          <li>
+        <div class="row"> 
+            <div class="col">
+
             <label>
-            Astrological Sign:<select value={this.state.as2} name="as2" onChange={this.handleChange}>
+            Astrological Sign:
+            </label>
+            </div>
+            <div class="col">
+            <select value={this.state.as2} name="as2" onChange={this.handleChange}>
             <option value="Aries">Aries</option>
               <option value="Taurus">Taurus</option>
               <option selected value="Gemini">Gemini</option>
@@ -135,24 +153,38 @@ class ComparisionForm extends React.Component {
               <option value="Capricorn">Capricorn</option>
               <option value="Aquarius">Aquarius</option>
               <option selected value="Pisces">Pisces</option>
-            </select>            </label>
-          </li>
-          <li>
+            </select>
+            </div>
+            </div>
+            <div class="row"> 
+            <div class="col">
             <label>
-            Name:<input type="text" value={this.state.name2} name="name2" onChange={this.handleChange} />
+            Name:
             </label>
-          </li>
-          <li>
+            </div>
+            <div class="col">
+            <input type="text" value={this.state.name2} name="name2" onChange={this.handleChange} />
+           </div>
+          </div>
+          <div class="row"> 
+            <div class="col">
             <label>
-            Age:<input type="text"  value={this.state.age2} name="age2"  onChange={this.handleChange} />
-            </label>
-          </li>
-          <li>
+            Age:</label>
+            </div>
+            <div class="col">
+            <input type="text"  value={this.state.age2} name="age2"  onChange={this.handleChange} />
+            </div>
+            </div>
+            
+            <div class="row"> 
+            <div class="col">
             <label>
-            Hair Color:<input type="text"  value={this.state.hairColor2} name="hairColor2"  onChange={this.handleChange} />
-            </label>
-          </li>
-        </ul>
+            Hair Color:</label>
+            </div>
+            <div class="col">
+            <input type="text"  value={this.state.hairColor2} name="hairColor2"  onChange={this.handleChange} />
+            </div>
+            </div>
         <input value ="Generate Comparision" type="submit" />
       </form>
       <br/>
