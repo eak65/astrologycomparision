@@ -1,9 +1,26 @@
+import { render } from '@testing-library/react';
 import React from 'react';
-
+import { BrowserRouter as Router, Routes, Link, Route, useHistory ,useLocation } from 'react-router-dom';
+import Result from './Comparision';
 function App() {
   return (
-    <div>Welcome to Astrology Compatability creator! <ComparisionForm /></div>
+    <Router>
+    <div>
+      <Routes>
+        <Route exact path="/" element={<ComparisionForm />}/>
+        <Route exact path="/comparision/:id" element={<Result />} />
+      </Routes>
+    </div>
+    </Router>
   );
+
+
+}
+function Location() {
+  return (
+    <label> {useLocation().pathname}</label> 
+  );
+
 }
 class ComparisionForm extends React.Component {
   constructor(props) {
@@ -18,7 +35,10 @@ class ComparisionForm extends React.Component {
                   name2: '',
                   textarea: '',
                   generatedUrl:'',
-                  disabled: true};
+                  disabled: true,
+                  submitDisabled: true,
+                  location: window.location.host
+                };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,14 +52,10 @@ class ComparisionForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert(this.state.as1 + this.state.name1 +this.state.age1 +this.state.hairColor1 +
-      this.state.as2 + this.state.name2 +this.state.age2 +this.state.hairColor2);
       this.setState({disabled: false});
       event.preventDefault();
   }
   post(event) {
-    console.log("test")
-
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -53,15 +69,17 @@ class ComparisionForm extends React.Component {
   console.log("test")
   fetch('https://84dvvklokj.execute-api.us-east-1.amazonaws.com/Production/compatibility', requestOptions)
       .then(response => response.json())
-      .then(data => this.state.generatedUrl = data);
+      .then(data => this.setState({generatedUrl: data, submitDisabled:false}));
       event.preventDefault();
 
 
   }
+  
 
   render() {
     return (
       <div>
+      <div>Welcome to Astrology Compatability creator!</div>
       <form onSubmit={this.handleSubmit}>
         <p>Your information:</p>
         <ul>
@@ -147,7 +165,9 @@ class ComparisionForm extends React.Component {
         <br/>
         <input value ="Submit" type="submit" disabled={this.state.disabled}/>
       </form>
-      <label> {this.state.generatedUrl}  </label>
+      <p>
+        <label hidden={this.state.submitDisabled}> <Link to={'/comparision/'+this.state.generatedUrl}>{this.state.location}/comparision/{this.state.generatedUrl}</Link></label> 
+      </p>
       </div>
     );
   }
