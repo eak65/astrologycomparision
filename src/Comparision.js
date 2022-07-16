@@ -30,18 +30,23 @@ import libra from './libra.jpg';
   
     // Render as usual
     return (
-        
+        <div>
       <div className="row">
-        <div className="col-4">
+        <div className="col-6 d-block m-auto">
         <img className="Circular" src={leo}  />
         </div>
-        <div className="col-4">
-         {posts.description}
-        </div>
-        <div className="col-4">
+        <div className="col-6 ">
       { <img className="Circular" src={libra}  />}
       </div>
       </div>
+      <div className="row mt-5">
+        <div className="col-8 offset-2">
+            
+         {posts.description}
+        </div>
+        </div>
+    </div>
+
     );
   }
 
