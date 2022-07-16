@@ -49,18 +49,4 @@ import libra from './libra.jpg';
 
     );
   }
-
-
-//   useEffect(() => {
-//     const getUsers = async () => {
-//       const users = await fetch('https://84dvvklokj.execute-api.us-east-1.amazonaws.com/Production/compatibility?id='+useParams().id)
-//       .then(response => response.json())
-//       .then(data => useState.count = data);
-//       setUsers(users);
-//     };
-  
-//     return () => {
-//       // this now gets called when the component unmounts
-//     };
-//   }, []);
 export default Result;

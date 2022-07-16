@@ -51,6 +51,37 @@ class ComparisionForm extends React.Component {
 
   handleSubmit(event) {
       this.setState({disabled: false});
+      var ageString = ''
+      var hairString = ''
+      if (this.state.age1 != '' && this.state.age2 != '') {
+        var age1 = parseInt(this.state.age1);
+        var age2 = parseInt(this.state.age2);
+
+        ageString += this.state.as2 + "'s have a tendency to cherish and connect with " + this.state.as1 +"'s that are between the ages of " + (age1 - 2) +" - " + (age1+ 2)+"."
+        ageString += this.state.as1 + "'s are most compatible with " + this.state.as2 +"'s that are between the ages of " + (age2 - 2) +" - " + (age2 + 1)+"."
+
+      } else if (this.state.age1 != '' && this.state.age2 == '') {
+        var age1 = parseInt(this.state.age1);
+        ageString += this.state.as2 + "'s have a tendency to cherish and connect with " + this.state.as1 +"'s that are between the ages of " + (age1 - 2) +" - " + (age1+ 2)+"."
+      } else if (this.state.age1 == '' && this.state.age2 != '') {
+        var age2 = parseInt(this.state.age2);
+        ageString += this.state.as1 + "'s have a tendency to cherish and connect with " + this.state.as2 +"'s that are between the ages of " + (age2 - 2) +" - " + (age2+ 2)+"."
+      }
+      ageString += " This is because their Chinese Lunar Year signs are universally aligned. "
+
+      hairString += " Research shows that certain astrological signs are attracted"
+      if (this.state.hairColor1 != '' && this.state.hairColor2 != '') { 
+      }
+      else if (this.state.age1 != '' && this.state.age2 == '') {
+      }
+      else if (this.state.age1 == '' && this.state.age2 != '') {
+      }
+
+
+ 
+
+
+      this.setState({textarea: "Both " + this.state.as1 + " and "+this.state.as2 + " are extremely compatible. " + ageString});
       event.preventDefault();
   }
   post(event) {
@@ -64,7 +95,6 @@ class ComparisionForm extends React.Component {
 
    })
   };
-  console.log("test")
   fetch('https://84dvvklokj.execute-api.us-east-1.amazonaws.com/Production/compatibility', requestOptions)
       .then(response => response.json())
       .then(data => this.setState({generatedUrl: data, submitDisabled:false}));
@@ -104,22 +134,13 @@ class ComparisionForm extends React.Component {
             </select> 
             </div>
           </div>
-          <div class="row"> 
-            <div class="col">
-            <label>
-            Name: </label>
-            </div>
-            <div class="col">
-            <input type="text"  value={this.state.name1} name="name1"  onChange={this.handleChange} />
-            </div>
-            </div>
             <div class="row"> 
             <div class="col">
             <label>
             Age:     </label>
             </div>
             <div class="col">
-              <input type="text"  value={this.state.age1} name="age1"  onChange={this.handleChange} />
+              <input type="number" min="13" max="100" value={this.state.age1} name="age1"  onChange={this.handleChange} />
           </div>
           </div>
           <div class="row"> 
@@ -128,10 +149,20 @@ class ComparisionForm extends React.Component {
             Hair Color:</label>
             </div>           
              <div class="col">
-            <input type="text"  value={this.state.hairColor1} name="hairColor1"  onChange={this.handleChange} />
+             <select value={this.state.hairColor1} name="hairColor1" onChange={this.handleChange}>
+             <option disabled value = '' selected></option>
+              <option value="Brown">Brown</option>
+              <option value="Blonde">Blonde</option>
+              <option value="Red">Red</option>
+              <option value="Other">Other</option>
+            </select>
             </div>
           </div>
+          <div class="row"> 
+          <div class="col-12">
         <p>Their information:</p>
+          </div>
+        </div>
         <div class="row"> 
             <div class="col">
 
@@ -156,23 +187,13 @@ class ComparisionForm extends React.Component {
             </select>
             </div>
             </div>
-            <div class="row"> 
-            <div class="col">
-            <label>
-            Name:
-            </label>
-            </div>
-            <div class="col">
-            <input type="text" value={this.state.name2} name="name2" onChange={this.handleChange} />
-           </div>
-          </div>
           <div class="row"> 
             <div class="col">
             <label>
             Age:</label>
             </div>
             <div class="col">
-            <input type="text"  value={this.state.age2} name="age2"  onChange={this.handleChange} />
+            <input type="number" min="13" max="100" value={this.state.age2} name="age2"  onChange={this.handleChange} />
             </div>
             </div>
             
@@ -182,17 +203,35 @@ class ComparisionForm extends React.Component {
             Hair Color:</label>
             </div>
             <div class="col">
-            <input type="text"  value={this.state.hairColor2} name="hairColor2"  onChange={this.handleChange} />
+            <select value={this.state.hairColor2} name="hairColor2" onChange={this.handleChange}>
+            <option disabled value = '' selected></option>
+            <option value="Brown">Brown</option>
+              <option value="Blonde">Blonde</option>
+              <option value="Red">Red</option>
+              <option value="Other">Other</option>
+            </select>
             </div>
             </div>
-        <input value ="Generate Comparision" type="submit" />
+            <div class="row"> 
+            <div class="col-3 mt-5 offset-3 justify-content-center">
+              <input value ="Generate Comparision" type="submit" />
+        </div>
+        </div>
+
       </form>
       <br/>
+      <div class='row'>
+      <div class='col-9 offset-0'>
+
       <form onSubmit={this.post}>
         <label>Results:</label>
         <br/>
         <br/>
-        <textarea value={this.state.textarea}  name="textarea" placeholder='Generated comparisions will appear here...' onChange={this.handleChange} />
+        <div class='row'>
+          <div class='col-12'>
+        <textarea rows="10" style={{width: "100%"}} value={this.state.textarea}  name="textarea" placeholder='Generated comparisions will appear here...' onChange={this.handleChange} />
+       </div>
+       </div>
         <br/>
         <br/>
         <input value ="Submit" type="submit" disabled={this.state.disabled}/>
@@ -200,6 +239,8 @@ class ComparisionForm extends React.Component {
       <p>
         <label hidden={this.state.submitDisabled}> <Link to={'/comparision/'+this.state.generatedUrl}>{this.state.location}/comparision/{this.state.generatedUrl}</Link></label> 
       </p>
+      </div>
+      </div>
       </div>
     );
   }
