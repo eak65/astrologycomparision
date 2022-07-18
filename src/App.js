@@ -133,7 +133,7 @@ class ComparisionForm extends React.Component {
             </select> 
             </div>
           </div>
-            <div className="row"> 
+            <div className="row mt-2"> 
             <div className="col">
             <label>
             Age:     </label>
@@ -142,7 +142,7 @@ class ComparisionForm extends React.Component {
               <input type="number" min="13" max="100" value={this.state.age1} name="age1"  onChange={this.handleChange} />
           </div>
           </div>
-          <div className="row"> 
+          <div className="row mt-2"> 
             <div className="col">
             <label>
             Hair Color:</label>
@@ -188,7 +188,7 @@ class ComparisionForm extends React.Component {
             </select>
             </div>
             </div>
-          <div className="row"> 
+          <div className="row mt-2"> 
             <div className="col">
             <label>
             Age:</label>
@@ -198,7 +198,7 @@ class ComparisionForm extends React.Component {
             </div>
             </div>
             
-            <div className="row"> 
+            <div className="row mt-2"> 
             <div className="col">
             <label>
             Hair Color:</label>

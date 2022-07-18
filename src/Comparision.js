@@ -39,11 +39,10 @@ import virgo from './images/virgo.jpg';
         // Save the posts into state
         // (look at the Network tab to see why the path is like this)
         console.log("save response")
-
+        setImage2(getImage(posts.as2));
         console.log("load images ")
         setImage1(getImage(posts.as1));
         console.log(image1)
-        setImage2(getImage(posts.as2));
         setPosts(json);
 
       }
@@ -93,8 +92,15 @@ import virgo from './images/virgo.jpg';
       </div>
       </div>
       <div className="row mt-5">
+        <div className="col-8 offset-2 ">
+            <p class="text-center">
+            Compatibility Rating: <span  style={{color:'green'}}>96%</span>
+            </p>
+        </div>
+    </div>
+      <div className="row mt-3">
         <div className="col-8 offset-2">
-            
+       
          {posts.description}
         </div>
         </div>
