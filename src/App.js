@@ -11,7 +11,8 @@ function App() {
     <Router>
     <div>
       <Routes>
-        <Route exact path="/" element={<ComparisionForm />}/>
+      <Route exact path="/" element={<Redirect />}/>
+        <Route exact path="/secret" element={<ComparisionForm />}/>
         <Route exact path="/comparision/:id" element={<Result />} />
       </Routes>
     </div>
@@ -19,6 +20,10 @@ function App() {
   );
 
 
+}
+function Redirect() {
+  window.location.href = 'https://www.astrology.com/';
+  return (<div></div>);
 }
 class ComparisionForm extends React.Component {
   constructor(props) {
@@ -35,7 +40,8 @@ class ComparisionForm extends React.Component {
                   generatedUrl:'',
                   disabled: true,
                   submitDisabled: true,
-                  location: window.location.host
+                  location: window.location.host,
+                  isLoading: false
                 };
 
     this.handleChange = this.handleChange.bind(this);
@@ -94,9 +100,10 @@ class ComparisionForm extends React.Component {
 
    })
   };
+  this.setState({isLoading: true});
   fetch('https://84dvvklokj.execute-api.us-east-1.amazonaws.com/Production/compatibility', requestOptions)
       .then(response => response.json())
-      .then(data => this.setState({generatedUrl: data, submitDisabled:false}));
+      .then(data => this.setState({generatedUrl: data, submitDisabled:false, isLoading:false}));
       event.preventDefault();
 
 
@@ -106,6 +113,7 @@ class ComparisionForm extends React.Component {
   render() {
     return (
       <div className="container">
+        
       <div>Welcome to Astrology Compatability creator!</div>
       <form onSubmit={this.handleSubmit}>
         <p>Your information:</p>
@@ -237,8 +245,12 @@ class ComparisionForm extends React.Component {
        </div>
         <br/>
         <br/>
-        <input value ="Submit" type="submit" disabled={this.state.disabled}/>
+        <input value ="Submit" type="submit" disabled={this.state.disabled}/> 
+        <div className="spinner-border" role="status" hidden={!this.state.isLoading}>
+        <span className="sr-only" ></span>
+    </div>
       </form>
+      
       <p>
         <label hidden={this.state.submitDisabled}> <Link to={'/comparision/'+this.state.generatedUrl}>{this.state.location}/comparision/{this.state.generatedUrl}</Link></label> 
       </p>

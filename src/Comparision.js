@@ -83,26 +83,31 @@ import virgo from './images/virgo.jpg';
     },[image2]); // <-- we didn't pass a value. what do you think will happen?
     return (
         <div>
-      <div className="row">
-        <div className="col-6 d-block m-auto">
-        <img className="Circular" src={image1}  />
+            <div className="row-12 text-center">
+                <h1>🔥 Astrology Sign Compatability 🔥</h1>
+            </div>
+            <div className="row">
+                <div className="col-6 d-block m-auto">
+                <img className="Circular" src={image1}  />
+                </div>
+                <div className="col-6 ">
+                 <img className="Circular" src={image2}  />
+                </div>
+            </div>
+                <div className="row mt-5" style={ {borderRadius:'5px', backgroundColor:'rgba(0, 0, 0, 0.5)', padding:'15px'}} >
+                    <div className="col ">
+                         <p class="text-center">
+                                  Compatibility Rating: <span  style={{ padding:'5px', borderRadius:'5px', backgroundColor:'green', color:'white', fontWeight: 'bold'}}> 96% </span>
+                         </p>
         </div>
-        <div className="col-6 ">
-      { <img className="Circular" src={image2}  />}
-      </div>
-      </div>
-      <div className="row mt-5">
-        <div className="col-8 offset-2 ">
-            <p class="text-center">
-            Compatibility Rating: <span  style={{color:'green'}}>96%</span>
-            </p>
-        </div>
-    </div>
-      <div className="row mt-3">
+   
+      <div className="row mt-2">
         <div className="col-8 offset-2">
-       
+    
          {posts.description}
         </div>
+        </div>
+        
         </div>
     </div>
 
