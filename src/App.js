@@ -245,7 +245,7 @@ class ComparisionForm extends React.Component {
        </div>
         <br/>
         <br/>
-        <input value ="Submit" type="submit" disabled={this.state.disabled}/> 
+        <input value ="Publish" type="submit" disabled={this.state.disabled}/> 
         <div className="spinner-border" role="status" hidden={!this.state.isLoading}>
         <span className="sr-only" ></span>
     </div>
