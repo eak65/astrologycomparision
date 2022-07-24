@@ -159,6 +159,7 @@ class ComparisionForm extends React.Component {
              <select value={this.state.hairColor1} name="hairColor1" onChange={this.handleChange}>
              <option disabled value = ''></option>
              <option value="brown">Brown</option>
+             <option value="black">Black</option>
               <option value="blonde">Blonde</option>
               <option value="red">Red</option>
               <option value="blue">Blue</option>
@@ -215,6 +216,7 @@ class ComparisionForm extends React.Component {
             <select value={this.state.hairColor2} name="hairColor2" onChange={this.handleChange}>
             <option disabled value = ''></option>
             <option value="brown">Brown</option>
+            <option value="black">Black</option>
               <option value="blonde">Blonde</option>
               <option value="red">Red</option>
               <option value="blue">Blue</option>
